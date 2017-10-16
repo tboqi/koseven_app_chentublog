@@ -1,0 +1,108 @@
+<{extends file='../../layout.html'}>
+<{block name=title}>首页<{/block}>
+
+<{block name=css}>
+<link href="http://tbq_static.com/bootstrap/docs/examples/blog/blog.css" rel="stylesheet">
+<{/block}>
+
+<{block name=content}>
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-sm-8 blog-main">
+          <div class="blog-post">
+            <h2 class="blog-post-title"><{$article->title}></h2>
+            <p class="blog-post-meta">
+              <{$article->create_time|date_format}>
+              <{foreach $article->tabs_detail as $tab}>
+              <a href="/article/tab/<{$tab.id}>"><{$tab.tab}></a>
+              <{/foreach}>
+              | 阅读:<{$article->read_times}>
+              | 分类:<a href="/article/category/<{$article->category_id}>"><{$article->category_name}></a>
+            </p>
+            <div><{$article->content}></div>
+            <div>
+              <form class="form-horizontal" action="/comment/save" method="POST">
+                <fieldset>
+                  <div id="legend" class="">
+                    <legend class="">评论</legend>
+                  </div>
+                  <div class="control-group">
+                    <label class="control-label" for="user_name">用户名</label>
+                    <div class="controls">
+                      <input placeholder="用户名" id="user_name" name="user_name" class="input-xlarge" type="text">
+                      <p class="help-block"></p>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <label class="control-label" for="user_email">Email</label>
+                    <div class="controls">
+                      <input placeholder="Email" id="user_email" name="user_email" class="input-xlarge" type="text">
+                      <p class="help-block"></p>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <label class="control-label"></label>
+                    <div class="controls">
+                      <div class="textarea">
+                        <input type="hidden" name="article_id" value="<{$article->id}>">
+                        <textarea type="" class="" id="content" name="content"> </textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <label class="control-label"></label>
+                    <div class="controls">
+                      <button type="submit" class="btn btn-default">确定</button>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+            <ul>
+              <{foreach $comments as $item}>
+              <li><{$item->content}></li>
+              <{/foreach}>
+            </ul>
+          </div><!-- /.blog-post -->
+
+        </div><!-- /.blog-main -->
+
+        <div class="col-sm-3 offset-sm-1 blog-sidebar">
+          <{*
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>About</h4>
+            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+          </div>*}>
+          <div class="sidebar-module">
+            <h4>分类</h4>
+            <ol class="list-unstyled">
+                <{foreach $categories as $cate}>
+                <li><a href="/article/category/<{$cate->id}>"><{$cate->name}></a></li>
+                <{/foreach}>
+            </ol>
+          </div>
+          <div class="sidebar-module">
+            <h4>热门</h4>
+            <ol class="list-unstyled">
+                <{foreach $hot_articles as $art}>
+                <li><a href="/article/detail/<{$art->id}>"><{$art->title}></a></li>
+                <{/foreach}>
+            </ol>
+          </div>
+          <{*
+          <div class="sidebar-module">
+            <h4>Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">GitHub</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Facebook</a></li>
+            </ol>
+          </div>*}>
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+<{/block}>

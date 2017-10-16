@@ -1,0 +1,73 @@
+<{extends file='../../layout.html'}>
+<{block name=title}>首页<{/block}>
+
+<{block name=css}>
+<link href="http://tbq_static.com/bootstrap/docs/examples/blog/blog.css" rel="stylesheet">
+<{/block}>
+
+<{block name=content}>
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-sm-8 blog-main">
+          <{foreach $articles as $item}>
+          <div class="blog-post">
+            <h2 class="blog-post-title"><a href="/article/detail/<{$item->id}>"><{$item->title}></a></h2>
+            <p class="blog-post-meta">
+              <{$item->create_time|date_format}>
+              <{foreach $item->tabs_detail as $tab}>
+              <a href="/article/tab/<{$tab.id}>"><{$tab.tab}></a>
+              <{/foreach}>
+              | 阅读:<{$item->read_times}>
+              | 分类:<a href="/article/category/<{$item->category_id}>"><{$item->category_name}></a>
+            </p>
+
+            <p><{$item->summary}></p>
+          </div><!-- /.blog-post -->
+          <{/foreach}>
+          <nav class="blog-pagination">
+            <{*<a class="btn btn-outline-primary" href="#">Older</a>*}>
+            <{$pagination}>
+            <{*<a class="btn btn-outline-secondary disabled" href="#">Newer</a>*}>
+          </nav>
+
+        </div><!-- /.blog-main -->
+
+        <div class="col-sm-3 offset-sm-1 blog-sidebar">
+          <{*
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>About</h4>
+            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+          </div>*}>
+          <div class="sidebar-module">
+            <h4>分类</h4>
+            <ol class="list-unstyled">
+                <{foreach $categories as $cate}>
+                <li><a href="/article/category/<{$cate->id}>"><{$cate->name}></a></li>
+                <{/foreach}>
+            </ol>
+          </div>
+          <div class="sidebar-module">
+            <h4>热门</h4>
+            <ol class="list-unstyled">
+                <{foreach $hot_articles as $art}>
+                <li><a href="/article/detail/<{$art->id}>"><{$art->title}></a></li>
+                <{/foreach}>
+            </ol>
+          </div>
+          <{*
+          <div class="sidebar-module">
+            <h4>Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">GitHub</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Facebook</a></li>
+            </ol>
+          </div>*}>
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+<{/block}>

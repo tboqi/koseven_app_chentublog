@@ -1,0 +1,61 @@
+<{extends file='../layout.html'}>
+<{block name=title1}>编辑文章<{/block}>
+
+<{block name=adminMain}>
+<script type="text/javascript" charset="utf-8" src="http://tbq_static.com/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="http://tbq_static.com/ueditor/_examples/editor_api.js"></script>
+<h1>编辑文章</h1>
+<form action="/admin/article/save" id="article_form" method="post">
+<table>
+    <tr>
+        <td>标题</td>
+        <td><input id="title" name="title" style="width: 450px;" value="<{$article->title}>" type="text" /></td>
+    </tr>
+    <tr>
+        <td>分类</td>
+        <td><select name="category_id" id="category_id">
+				  <{foreach $categories as $category}>
+				  <option value="<{$category->id}>"<{if $category->id == $article->category_id}>' selected'<{/if}>><{$category->name}></option>
+				  <{/foreach}>
+				</select><a href="/admin/article_category/create">创建分类</a></td>
+    </tr>
+    <tr>
+        <td>摘要</td>
+        <td><textarea name="summary" id="summary" style="width: 450px; height: 110px;"><{$article->summary}></textarea></td>
+    </tr>
+    <tr>
+        <td>内容</td>
+        <td>
+            <script id="container" name="content" type="text/plain"><{$article->content}></script></td>
+    </tr>
+    <tr>
+        <td>标签</td>
+        <td><input id="tabs" name="tabs" value="<{foreach $article->tabs_detail as $key => $tab}><{if $key>0}>,<{/if}><{$tab.tab}><{/foreach}>" type="text" /></td>
+    </tr>
+    <tr>
+        <td>原文地址</td>
+        <td><input id="refurl" name="refurl" value="<{$article->refurl}>" type="text" /></td>
+    </tr>
+    <tr>
+        <td colspan="2"><input value="保存" type="submit" /></td>
+    </tr>
+</table>
+<input type="hidden" name="id" value="<{$article->id}>" />
+</form>
+    <script type="text/javascript">
+        UE.getEditor('container',{
+            //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
+            toolbars:[['FullScreen', 'Source', 'Undo', 'Redo','Bold','test']],
+            //focus时自动清空初始化时的内容
+            autoClearinitialContent:true,
+            //关闭字数统计
+            wordCount:false,
+            //关闭elementPath
+            elementPathEnabled:false,
+            //默认的编辑区域高度
+            initialFrameHeight:400,
+            initialFrameWidth:750
+            //更多其他参数，请参考ueditor.config.js中的配置项
+        })
+    </script>
+<{/block}>

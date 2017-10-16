@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+<channel>
+	<title><![CDATA[blog]]></title>
+	<description><![CDATA[blog]]></description>
+	<link>http://chentublog.khn/</link>
+	<language>zh-cn</language>
+	<generator>chentublog.khn</generator>
+	<ttl>600</ttl>
+	<{foreach $articles as $article }>
+	<item>
+		<title><![CDATA[<{$article->title}>]]></title>
+		<link><![CDATA[/article/detail/<{$article->id}>]]></link>
+		<description><![CDATA[<{$article->content}>]]></description>
+		<pubDate><{$article->create_time}></pubDate>
+		<guid>/article/view/<{$article->id}></guid>
+	</item>
+	<{/foreach}>
+</channel>
+</rss>

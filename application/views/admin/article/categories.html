@@ -1,0 +1,16 @@
+<{extends file='../layout.html'}>
+<{block name=title1}><{$title}><{/block}>
+
+<{block name=adminMain}>
+<h1><{$title}></h1>
+<div><a href="/admin/article_category/create">添加分类</a></div>
+<ul>
+	<{foreach $categories as $category}>
+	<li>
+		<a href="/article/category/<{$category->id}>"><{$category->name}></a>
+		[<a href="/admin/article_category/edit/<{$category->id}>">编辑</a>]
+		[<a href="/admin/article_category/del/<{$category->id}>">删除</a>]
+	</li>
+	<{/foreach}>
+</ul>
+<{/block}>

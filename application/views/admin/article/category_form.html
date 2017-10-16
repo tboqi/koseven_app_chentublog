@@ -1,0 +1,26 @@
+<{extends file='../layout.html'}>
+<{block name=title1}>控制台<{/block}>
+
+<{block name=adminMain}>
+<h1><{$title}></h1>
+<form action="/admin/article_category/save" id="categoryForm" method="post">
+<table>
+    <tr>
+        <td>分类名</td>
+        <td><input id="category_name" name="category_name" value="<{$category->name}>" type="text" /></td>
+    </tr>
+    <tr>
+        <td>显示顺序（从小到大）</td>
+        <td><input id="show_order" name="show_order" value="<{$category->show_order}>" type="text" /></td>
+    </tr>
+    <tr>
+        <td>描述</td>
+        <td><textarea rows="4" cols="20" id="description" name="description"><{$category->description}></textarea></td>
+    </tr>
+    <tr>
+        <td colspan="2"><input id="save_category" name="save_category" value="保存" type="submit" /></td>
+    </tr>
+</table>
+<input type="hidden" name="id" value="<{$category->id}>" />
+</form>
+<{/block}>
