@@ -3,7 +3,7 @@
         listen    80;
         server_name chentublog.khn;
         index index.php;
-        root /work/d/tbqapp2/php/tbq.com/apps/chentublog;
+        root /work/d/code/koseven/apps/chentublog;
 
         location / {
             index index.php;
@@ -13,7 +13,7 @@
         location ~ .*\.(php|php5)?$
         {
             try_files $uri =404;
-            fastcgi_pass 127.0.0.1:9001;
+            fastcgi_pass 127.0.0.1:9000;
             fastcgi_index index.php;
             include fastcgi.conf;
         }
