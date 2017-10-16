@@ -103,7 +103,7 @@ Kohana::modules(array(
     // 'unittest'   => MODPATH.'unittest',   // Unit testing
     // 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
     'pagination' => MODPATH . 'pagination',
-    'smarty3' => MODPATH . 'smarty3',
+    'smarty' => MODPATH . 'smarty',
 ));
 /**
  * 3级目录
