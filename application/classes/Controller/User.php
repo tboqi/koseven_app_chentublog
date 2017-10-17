@@ -14,8 +14,7 @@ class Controller_User extends Controller_Base
 
             $url = URL::site('admin');
             if ($auth->login($username, $password, true)) {
-                $url = $_POST['url'];
-                $url = !empty($url) ? $url : URL::site('admin');
+                $url = empty($_POST['url']) ? URL::site('admin') : $_POST['url'];
                 //写入cookie
                 $this->remember_login($username, $password);
             }
