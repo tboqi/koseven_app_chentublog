@@ -60,6 +60,7 @@ class Controller_Admin_Article extends Controller_Admin
         $model_article_category = new Model_Article_Category();
         $arr = [
             'categories' => $model_article_category->find_all(),
+            'is_edit' => false,
         ];
         $this->display('admin/article/article_form_create.html', $arr);
     }
