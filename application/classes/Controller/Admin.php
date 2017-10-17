@@ -6,7 +6,7 @@ class Controller_Admin extends Controller_Base
     {
         parent::before();
         if (!$this->is_login()) {
-            die('需要登录');
+            header('location:/user/login');
         }
     }
 }

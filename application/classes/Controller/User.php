@@ -17,9 +17,10 @@ class Controller_User extends Controller_Base
                 $url = empty($_POST['url']) ? URL::site('admin') : $_POST['url'];
                 //写入cookie
                 $this->remember_login($username, $password);
+                header('location:' . $url);
+                exit;
             }
-            header('location:' . $url);
-            exit;
+            die('登录失败');
         }
 
         $this->display('site/user/login.html', ['url' => '', 'action' => url::site('user/login')]);
