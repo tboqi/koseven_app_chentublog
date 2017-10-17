@@ -1,26 +1,37 @@
 <{extends file='../layout.html'}>
-<{block name=title1}>控制台<{/block}>
+<{block name=title}><{$title}><{/block}>
 
-<{block name=adminMain}>
-<h1><{$title}></h1>
-<form action="/admin/article_category/save" id="categoryForm" method="post">
-<table>
-    <tr>
-        <td>分类名</td>
-        <td><input id="category_name" name="category_name" value="<{$category->name}>" type="text" /></td>
-    </tr>
-    <tr>
-        <td>显示顺序（从小到大）</td>
-        <td><input id="show_order" name="show_order" value="<{$category->show_order}>" type="text" /></td>
-    </tr>
-    <tr>
-        <td>描述</td>
-        <td><textarea rows="4" cols="20" id="description" name="description"><{$category->description}></textarea></td>
-    </tr>
-    <tr>
-        <td colspan="2"><input id="save_category" name="save_category" value="保存" type="submit" /></td>
-    </tr>
-</table>
-<input type="hidden" name="id" value="<{$category->id}>" />
-</form>
+<{block name=content}>
+<div class="Hui-article">
+    <article class="cl pd-20">
+        <form method="post" class="form form-horizontal" id="form-admin-add" action="/admin/article_category/save">
+            <div class="row cl"><h1><{$title}></h1></div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>分类名</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <input type="text" class="input-text" value="<{$category->name}>" placeholder="分类名" id="category_name" name="category_name">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>显示顺序（从小到大）</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <input type="text" class="input-text" value="<{$category->show_order}>" placeholder="" id="show_order" name="show_order">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3">备注：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <textarea name="description" id="description" cols="" rows="" class="textarea"  placeholder="说点什么...100个字符以内" dragonfly="true" onKeyUp="textarealength(this,100)"><{$category->description}></textarea>
+                    <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
+                </div>
+            </div>
+            <div class="row cl">
+                <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                    <input type="hidden" name="id" value="<{$category->id}>" />
+                    <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                </div>
+            </div>
+        </form>
+    </article>
+</div>
 <{/block}>
