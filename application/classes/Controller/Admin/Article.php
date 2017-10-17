@@ -62,7 +62,7 @@ class Controller_Admin_Article extends Controller_Admin
             'categories' => $model_article_category->find_all(),
             'is_edit' => false,
         ];
-        $this->display('admin/article/article_form_create.html', $arr);
+        $this->display('admin/article/article_form.html', $arr);
     }
 
     public function action_edit()
@@ -78,6 +78,7 @@ class Controller_Admin_Article extends Controller_Admin
         $arr = [
             'categories' => $model_article_category->find_all(),
             'article' => $article,
+            'is_edit' => true,
         ];
         $this->display('admin/article/article_form.html', $arr);
     }
